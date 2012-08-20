@@ -1,5 +1,33 @@
 <project name="datafu" basedir="." default="all"
          xmlns:ivy="antlib:org.apache.ivy.ant">
+  <!-- load ant-contrib tasks to get the "if" task. -->
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="${basedir}/cloudera/maven-packaging/lib/ant-contrib-1.0b3.jar"/>
+    </classpath>
+  </taskdef>
+  
+  <!-- Initializes ivy/libraries.properties and build.properties with CDH versions -->
+  <if>
+    <and>
+      <not>
+        <isset property="cdh.maven" />
+      </not>
+      <not>
+        <available file="${basedir}/cdh.build.properties" />
+      </not>
+    </and>
+    <then>
+      <exec  executable="mvn" dir="${basedir}" failonerror="true">
+        <arg value="-f" />
+        <arg value="cloudera-pom.xml" />
+        <arg value="process-resources"/>
+      </exec>
+    </then>
+  </if>
+  <property name="mvnrepo" value="http://repo2.maven.org/maven2"/>
+  <property file="cdh.build.properties" />
+
   <property file="build.properties" />
 
   <property name="name" value="datafu" />
@@ -8,8 +36,11 @@
   <property environment="env" />
   
   <property name="ivy.jar.dir" value="${basedir}/ivy" />
-	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-2.2.0.jar" />
-  
+  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-2.2.0.jar" />
+  <property name="ivysettings.xml" value="${ivy.jar.dir}/ivysettings.xml"/>
+
+  <target name="package" depends="clean, jar, srcjar, docs, build-pig-tests, build-unit-tests"
+          description="Build all without tests"/>
   <target name="all" depends="clean, jar, srcjar, docs, coverage" description="Build all artifacts." />
 
   <!-- TODO need a release target -->
@@ -22,7 +53,11 @@
              uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
   </target>
   
-  <target name="ivy-resolve" depends="install-ivy" description="retreive dependencies with ivy">
+  <target name="ivy-init" depends="install-ivy">
+    <ivy:settings file="${ivysettings.xml}"/>
+  </target>
+
+  <target name="ivy-resolve" depends="ivy-init" description="retreive dependencies with ivy">
     <ivy:retrieve/>
   </target>
   
@@ -30,7 +65,7 @@
     <exec executable="./check-license-headers.sh" failonerror="true"/>
   </target>
   
-  <target name="clean-cache" depends="install-ivy" description="clean the ivy cache">
+  <target name="clean-cache" depends="ivy-init" description="clean the ivy cache">
   	<ivy:cleancache />
   </target>
   
@@ -181,7 +216,7 @@
       <fileset dir="${instrumented.dir}" />
     </jarjar>
   </target>
-  
+
   <target name="test" depends="build-pig-tests, build-unit-tests, jar" description="Runs the pig tests">
     <taskdef resource="testngtasks" classpath="lib/testng-6.2.jar"/>
     <testng classpathref="test-classpath"
@@ -264,7 +299,7 @@
   <macrodef name="create-release-artifacts">
     <attribute name="version" />
     <sequential>
-    <antcall target="all"/>
+    <antcall target="package"/>
     <zip destfile="${dist.dir}/${name}-@{version}.zip">
       <zipfileset dir="." prefix="${name}-@{version}" includes="**">
         <exclude name="${dist.dir}/classes/**"/>

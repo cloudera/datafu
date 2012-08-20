@@ -1,0 +1,54 @@
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
+#This properties file lists the versions of the various artifacts used by pig and components.
+#It drives ivy and the generation of a maven POM
+
+#These are the versions of our dependencies (in alphabetical order)
+#??? apacheant.version=1.7.1
+antlr.version=antlr:antlr.version
+
+commons-beanutils.version=commons-beanutils:commons-beanutils.version
+commons-cli.version=commons-cli:commons-cli.version
+commons-el.version=commons-el:commons-el.version
+commons-lang.version=commons-lang:commons-lang.version
+commons-logging.version=commons-logging:commons-logging.version
+checkstyle.version=checkstyle:checkstyle.version
+
+ivy.version=org.apache.ivy:ivy.version
+hadoop-core.version=org.apache.hadoop:hadoop-core.version
+hadoop-test.version=org.apache.hadoop:hadoop-test.version
+
+javacc.version=net.java.dev.javacc:javacc.version
+jetty-util.version=org.mortbay.jetty:jetty-util.version
+jline.version=jline:jline.version
+jsch.version=com.jcraft:jsch.version
+junit.version=junit:junit.version
+jdiff.version=jdiff:jdiff.version
+
+log4j.version=log4j:log4j.version
+
+slf4j-api.version=org.slf4j:slf4j-api.version
+slf4j-log4j12.version=org.slf4j:slf4j-log4j12.version
+
+rats-lib.version=com.google.code.p.arat:rat-lib.version
+
+xerces.version=xerces:xerces.version
+
+jackson.version=org.codehaus.jackson:jackson-core-asl.version
+
+joda-time.version=joda-time:joda-time.version
+guava.version=com.google.guava:guava.version
+jython.version=org.python:jython.version
+
+avro.version=org.apache.avro:avro.version
+
