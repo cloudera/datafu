@@ -26,8 +26,8 @@
     </then>
   </if>
   <property name="mvnrepo" value="http://repo2.maven.org/maven2"/>
-  <property file="build.properties" />
   <property file="cdh.build.properties" />
+  <property file="build.properties" />
 
   <property name="name" value="datafu" />
   <property name="display.name" value="DataFu" />
