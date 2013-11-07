@@ -20,7 +20,7 @@
         <dependency org="joda-time" name="joda-time" rev="${joda-time.version}" conf="common->default"/>
         <dependency org="org.apache.commons" name="commons-math" rev="${commons-math.version}" conf="common->default"/>
         <dependency org="commons-io" name="commons-io" rev="${commons-io.version}" conf="common->default"/>
-        <dependency org="org.apache.hadoop" name="hadoop-core" rev="${hadoop.version}" conf="common->default"/>
+        <dependency org="org.apache.hadoop" name="hadoop-client" rev="${hadoop.version}" conf="common->default"/>
         <dependency org="org.testng" name="testng" rev="${testng.version}" conf="common->default"/>
         <dependency org="com.google.guava" name="guava" rev="${guava.version}" conf="common->default"/>
           

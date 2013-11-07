@@ -1,0 +1,14 @@
+curr.release=com.linkedin.datafu:datafu.version
+version=com.linkedin.datafu:datafu.version
+reactor.repo=https://repository.cloudera.com/content/repositories/snapshots
+pig.version=org.apache.pig:pig.version
+hadoop-core.version=org.apache.hadoop:hadoop-core.version
+hadoop-test.version=org.apache.hadoop:hadoop-test.version
+hbase.version=org.apache.hbase:hbase.version
+zookeeper.version=org.apache.zookeeper:zookeeper.version
+avro.version=org.apache.avro:avro.version
+hadoop.version=org.apache.hadoop:hadoop-common.version
+hadoop-common.version=org.apache.hadoop:hadoop-common.version
+hadoop-hdfs.version=org.apache.hadoop:hadoop-hdfs.version
+hadoop-mapreduce.version=org.apache.hadoop:hadoop-mapreduce.version
+antlr.version=org.antlr:antlr.version

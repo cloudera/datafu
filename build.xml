@@ -1,6 +1,35 @@
 <project name="datafu" basedir="." default="all"
          xmlns:ivy="antlib:org.apache.ivy.ant"
          xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+  <!-- load ant-contrib tasks to get the "if" task. -->
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="${basedir}/cloudera/maven-packaging/lib/ant-contrib-1.0b3.jar"/>
+    </classpath>
+  </taskdef>
+  
+  <!-- Initializes ivy/libraries.properties and build.properties with CDH versions -->
+  <if>
+    <and>
+      <not>
+        <isset property="cdh.maven" />
+      </not>
+      <not>
+        <available file="${basedir}/cdh.build.properties" />
+      </not>
+    </and>
+    <then>
+      <exec  executable="mvn" dir="${basedir}" failonerror="true">
+        <arg value="-f" />
+        <arg value="cloudera-pom.xml" />
+        <arg value="process-resources"/>
+      </exec>
+    </then>
+  </if>
+  <property name="mvnrepo" value="http://repo2.maven.org/maven2"/>
+  <property file="cdh.build.properties" />
+  <property file="build.properties" />
+
   <property file="build.properties" />
 
   <property name="name" value="datafu" />
@@ -75,6 +104,12 @@
   <target name="init" depends="ivy-resolve">
     <mkdir dir="${dist.dir}" />
   </target>
+  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-2.2.0.jar" />
+  <property name="ivysettings.xml" value="${ivy.jar.dir}/ivysettings.xml"/>
+
+<!--  <target name="package" depends="clean, jar, sources-jar, docs, build-pig-tests, build-unit-tests" -->
+  <target name="package" depends="clean, jar, sources-jar, build-pig-tests"
+          description="Build all without tests"/>
 
   <target name="eclipse" depends="jar,jar-plugin">
     <delete file="${basedir}/.factorypath"/>
@@ -124,7 +159,7 @@
              uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
   </target>
   
-  <target name="ivy-resolve" depends="ivy-taskdef" description="retrieve dependencies with ivy">
+  <target name="ivy-resolve" depends="ivy-taskdef" description="retreive dependencies with ivy">
     <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact]-[type]-[revision].[ext]"/>
   </target>
 
@@ -440,4 +475,27 @@
       <fileset dir="." includes="**/**/*.asc"/>
     </delete>
   </target>
+
+  <macrodef name="create-release-artifacts">
+    <attribute name="version" />
+    <sequential>
+    <tar destfile="${dist.dir}/${name}-@{version}.tar.gz" compression="gzip" longfile="gnu">
+      <tarfileset dir="." prefix="${name}-@{version}" includes="**">
+        <exclude name="${dist.dir}/classes/**"/>
+		<exclude name="${dist.dir}/pigtestclasses/**"/>
+		<exclude name="${dist.dir}/unittestclasses/**"/>
+        <exclude name="${dist.dir}/*.zip"/>
+        <exclude name=".git*/**"/>
+		<exclude name="input"/>
+		<exclude name="pigunit-input-overriden.txt"/>
+      </tarfileset>
+    </tar>
+    </sequential>
+  </macrodef>
+
+  <target name="release" description="Create a release zip file with everything pre-built."
+          depends="clean,jar,sources-jar,javadoc-jar">
+    <create-release-artifacts version="${datafu.version}" />
+  </target>
+
 </project>
