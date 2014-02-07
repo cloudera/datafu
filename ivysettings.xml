@@ -10,6 +10,10 @@
            m2compatible="true"
            checkmodified="true"
            pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+  <ibiblio name="cdh-releases-rcs" root="https://repository.cloudera.com/artifactory/cdh-releases-rcs"
+           m2compatible="true"
+           checkmodified="true"
+           pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
     <ibiblio name="ibiblio" m2compatible="true"/>
   </chain>
   <filesystem name="tools" local="true">
