@@ -23,13 +23,13 @@
   <parent>
     <groupId>com.cloudera.cdh</groupId>
     <artifactId>datafu-root</artifactId>
-    <version>0.0.4-cdh4.5.0.2-SNAPSHOT</version>
+    <version>0.0.4-cdh4.5.0.2</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   
   <groupId>com.linkedin.datafu</groupId>
   <artifactId>datafu</artifactId>
-  <version>0.0.4-cdh4.5.0.2-SNAPSHOT</version>
+  <version>0.0.4-cdh4.5.0.2</version>
   <packaging>pom</packaging>
   
   <dependencies>
