@@ -163,6 +163,14 @@
     <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact]-[type]-[revision].[ext]"/>
   </target>
 
+<target name="ivy-resolve-source" depends="ivy-taskdef">
+    <ivy:resolve settingsRef="${basedir}/${ivy.settings.file}" transitive="false" conf="default,common" />
+  </target>
+
+<target name="ivy-get-sources" depends="ivy-taskdef" description="Fetch JARs with source codes for libraries that have them">
+<ivy:retrieve pattern="libsources/[artifact]-[type]-[revision].[ext]" type="source" />
+</target>
+
   <target name="check-licenses" description="checks that source files have license header">
     <exec executable="./check-license-headers.sh" failonerror="true"/>
   </target>
