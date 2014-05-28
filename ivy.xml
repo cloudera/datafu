@@ -3,7 +3,7 @@
     <configurations>
       <conf name="common" description="common libraries" />
       <conf name="tools" description="tools libraries" />
-      <conf name="sources" extends="common" description="tools libraries" />
+      <conf name="sources" description="tools libraries" />
     </configurations>
     <dependencies>
       
