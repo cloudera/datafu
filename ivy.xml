@@ -2,6 +2,7 @@
     <info organisation="datafu" module="datafu"/>
     <configurations>
       <conf name="common" description="common libraries" />
+      <conf name="default" description="default profile" />
       <conf name="tools" description="tools libraries" />
       <conf name="sources" description="tools libraries" />
     </configurations>
