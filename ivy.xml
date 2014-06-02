@@ -19,7 +19,7 @@
         <dependency org="org.apache.avro" name="avro" rev="${avro.version}" conf="common->default"/>
         
         <dependency org="it.unimi.dsi" name="fastutil" rev="${fastutil.version}" conf="common->default"/>
-        <dependency org="joda-time" name="joda-time" rev="${joda-time.version}" conf="common->default,sources"/>
+        <dependency org="joda-time" name="joda-time" rev="${joda-time.version}" conf="common->default"/>
         <dependency org="org.apache.commons" name="commons-math" rev="${commons-math.version}" conf="common->default,sources"/>
         <dependency org="commons-io" name="commons-io" rev="${commons-io.version}" conf="common->default,sources"/>
         <dependency org="org.apache.hadoop" name="hadoop-client" rev="${hadoop.version}" conf="common->default"/>
@@ -29,7 +29,7 @@
         <!-- needed for pigunit to work -->
         <dependency org="log4j" name="log4j" rev="${log4j.version}" conf="common->default,sources"/>
         <dependency org="jline" name="jline" rev="${jline.version}" conf="common->default,sources"/>
-        <dependency org="org.antlr" name="antlr" rev="${antlr.version}" conf="common->default,sources"/>
+        <dependency org="org.antlr" name="antlr" rev="${antlr.version}" conf="common->default"/>
 
         <dependency org="org.apache.maven" name="maven-ant-tasks" rev="${maven.version}" conf="common->default,sources" />
         
