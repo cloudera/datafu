@@ -160,7 +160,7 @@
   </target>
   
   <target name="ivy-resolve" depends="ivy-taskdef" description="retreive dependencies with ivy">
-    <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact]-[type]-[revision].[ext]" conf="common,tools"/>
+    <ivy:retrieve type="jar" pattern="${lib.dir}/[conf]/[artifact]-[type]-[revision].[ext]" conf="common,tools"/>
   </target>
 
  <target name="ivy-resolve-source" depends="ivy-taskdef">
