@@ -21,13 +21,13 @@
   <parent>
     <groupId>com.cloudera.cdh</groupId>
     <artifactId>datafu-root</artifactId>
-    <version>1.1.0-cdh5.3.2-SNAPSHOT</version>
+    <version>1.1.0-cdh5.3.3-SNAPSHOT</version>
     <relativePath>cloudera/maven-packaging/pom.xml</relativePath>
   </parent>
   
   <groupId>com.cloudera.cdh</groupId>
   <artifactId>datafu-ant</artifactId>
-  <version>1.1.0-cdh5.3.2-SNAPSHOT</version>
+  <version>1.1.0-cdh5.3.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <description>DataFu Ant</description>
