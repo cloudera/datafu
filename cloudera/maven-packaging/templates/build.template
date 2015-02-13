@@ -1,6 +1,6 @@
 curr.release=com.linkedin.datafu:datafu.version
 version=com.linkedin.datafu:datafu.version
-reactor.repo=https://repo1.maven.org/maven2
+reactor.repo=http://maven.jenkins.cloudera.com:8081/artifactory/cloudera-mirrors/
 pig.version=org.apache.pig:pig.version
 hadoop-core.version=org.apache.hadoop:hadoop-core.version
 hadoop-test.version=org.apache.hadoop:hadoop-test.version
