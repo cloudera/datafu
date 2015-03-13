@@ -71,7 +71,7 @@
   <property name="fastutil.jar" value="fastutil-jar-6.3.jar" />
 
   <!-- Java configuration -->
-  <property name="targetJavaVersion" value="1.5" />
+  <property name="targetJavaVersion" value="1.7" />
   <property name="sourceJavaVersion" value="${targetJavaVersion}" />
 
   <!-- output names -->
