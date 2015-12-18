@@ -1,20 +1,21 @@
 <ivysettings>
+
+  <property name="releases.cloudera.com"
+      value="https://repository.cloudera.com/artifactory/cdh-releases-rcs/"
+      override="false"/>
+  <property name="snapshots.cloudera.com"
+      value="https://repository.cloudera.com/artifactory/libs-snapshot-local/"
+      override="false"/>
+  <property name="maven2.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier])"/>
+  <property name="maven2.pattern.ext" value="${maven2.pattern}.[ext]"/>
+
 <settings defaultResolver="ivyrep"/>
 <resolvers>
   <chain name="ivyrep" returnFirst="true">
-    <ibiblio name="ibiblio" m2compatible="true"/>
-  <ibiblio name="reactor-repo" root="${reactor.repo}"
-           m2compatible="true"
-           checkmodified="true"
-           pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
-  <ibiblio name="cloudera-ext-release" root="https://repository.cloudera.com/artifactory/ext-release-local"
-           m2compatible="true"
-           checkmodified="true"
-           pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
-  <ibiblio name="cdh-releases-rcs" root="https://repository.cloudera.com/artifactory/cdh-releases-rcs"
-           m2compatible="true"
-           checkmodified="true"
-           pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+  <ibiblio name="ibiblio" m2compatible="true"/>
+  <ibiblio name="reactor-repo" root="${reactor.repo}" m2compatible="true" checkmodified="true" pattern="${maven2.pattern.ext}"/>
+  <ibiblio name="cloudera-releases" root="${releases.cloudera.com}" pattern="${maven2.pattern.ext}" m2compatible="true"/>
+  <ibiblio name="cloudera-snapshot" root="${snapshots.cloudera.com}" pattern="${maven2.pattern.ext}" m2compatible="true" checkmodified="true" changingPattern=".*SNAPSHOT"/>
   </chain>
   <filesystem name="tools" local="true">
     <artifact pattern="${java.home}/lib/tools.[type]" />
